@@ -38,5 +38,9 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+        -name: Hadolint
+         uses: hadolint/hadolint-action@v2.0.0
+          with:
+            dockerfile: Dockerfile
       - name: build image and push
         run: ./mvnw clean package
