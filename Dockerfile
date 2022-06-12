@@ -9,4 +9,6 @@ RUN ./mvnw clean install
 
 COPY src ./src
 
+EXPOSE 8081
+
 CMD ["./mvnw", "quarkus:dev"]
