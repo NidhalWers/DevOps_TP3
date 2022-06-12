@@ -2,12 +2,11 @@
 
 FROM openjdk:16-alpine3.13
 
-WORKDIR /app
+WORKDIR /home/nidhal/Bureau/Dossier_Nidhal/Scolaire/Efrei/M1/S8/DevOps/tp1/DevOps_TP1
 
-COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
-RUN ./mvnw dependency:go-offline
+RUN ./mvnw clean install
 
-COPY src ./src
+COPY ./src
 
-CMD ["./mvnw", "spring-boot:run"]
+CMD ["./mvnw", "quarkus:dev"]
