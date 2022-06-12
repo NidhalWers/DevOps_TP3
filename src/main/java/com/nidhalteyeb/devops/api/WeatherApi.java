@@ -21,12 +21,12 @@ public class WeatherApi {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getWeather() {
-        double lat = Double.parseDouble(System.getenv("LAT"));
-        double lng = Double.parseDouble(System.getenv("LONG"));
+    public String getWeather(@QueryParam("lat") Double lat, @QueryParam("lon") Double lon) {
+        //double lat = Double.parseDouble(System.getenv("LAT"));
+        //double lng = Double.parseDouble(System.getenv("LONG"));
         WeatherRequest request = WeatherRequest.builder()
                 .lat(lat)
-                .lng(lng)
+                .lng(lon)
                 .dateTime(LocalDateTime.now())
                 .format("json")
                 .unit(WeatherUnit.CELSIUS)
