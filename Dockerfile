@@ -7,6 +7,6 @@ WORKDIR /home/nidhal/Bureau/Dossier_Nidhal/Scolaire/Efrei/M1/S8/DevOps/tp1/DevOp
 COPY mvnw pom.xml ./
 RUN ./mvnw clean install
 
-COPY ./src
+COPY src ./src
 
 CMD ["./mvnw", "quarkus:dev"]
