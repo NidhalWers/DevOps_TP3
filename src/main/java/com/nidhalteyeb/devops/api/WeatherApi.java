@@ -22,8 +22,16 @@ public class WeatherApi {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getWeather(@QueryParam("lat") Double lat, @QueryParam("lon") Double lon) {
-        //double lat = Double.parseDouble(System.getenv("LAT"));
-        //double lng = Double.parseDouble(System.getenv("LONG"));
+        /*if(lon==null){
+            return "lon null";
+        }
+        if(lat==null){
+            return "lat null";
+        }
+        System.out.println("\tlat = "+lat+"\n\tlon="+lon);
+        //double lat1 = Double.parseDouble(lat);
+        //double lng = Double.parseDouble(lon);
+         */
         WeatherRequest request = WeatherRequest.builder()
                 .lat(lat)
                 .lng(lon)
