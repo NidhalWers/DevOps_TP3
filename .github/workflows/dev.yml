@@ -29,14 +29,14 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       - name: test
-        run: ./mvnn -B clean test
+        run: ./mvnw -B clean test
       - name: integration tests
         if: github.event.pull_request.base.ref == 'main'
-        run: ./mvnn -B clean integration-test
+        run: ./mvnw -B clean integration-test
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: build image and push
-        run: ./mvnn clean package
+        run: ./mvnw clean package
