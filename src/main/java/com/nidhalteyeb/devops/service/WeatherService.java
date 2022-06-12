@@ -1,6 +1,7 @@
 package com.nidhalteyeb.devops.service;
 
 import com.nidhalteyeb.devops.internal.http.HttpService;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.net.http.HttpResponse;
@@ -10,15 +11,16 @@ public class WeatherService {
 
     private final HttpService httpService;
 
-    private static final String WEATHER_API_KEY = "240aa650f4db4e154a07d0459c30a347";
+    private String apiKey;
 
-    public WeatherService(){
+    public WeatherService(@ConfigProperty(name = "weather.api.key") String apiKey){
         super();
         this.httpService = new HttpService();
+        this.apiKey=apiKey;
     }
 
     public String calculateWeather(final WeatherRequest request){
-        final HttpResponse<String> httpResponse = httpService.sendRequest(new WeatherUrlFormatter().buildHttpUrl(request, WEATHER_API_KEY) );
+        final HttpResponse<String> httpResponse = httpService.sendRequest(new WeatherUrlFormatter().buildHttpUrl(request, apiKey) );
         return httpResponse.body();
     }
 
